@@ -14,4 +14,5 @@ run_as() {
 echo "installing custom apps: $NEXTCLOUD_CUSTOM_APPS"
 for app in $NEXTCLOUD_CUSTOM_APPS; do
   php /var/www/html/occ app:install "$app" || echo "Warning: Failed to install custom app '$app'!"
+  php /var/www/html/occ app:enable "$app" || echo "Warning: Cant enable app '$app'!"
 done

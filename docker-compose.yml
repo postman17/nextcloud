@@ -14,25 +14,18 @@ services:
       - "5433:5432"
 
   app:
-      image: nextcloud:latest
+      build:
+        dockerfile: Dockerfile
       container_name: nextcloud-app
       restart: unless-stopped
       depends_on:
         - db
       volumes:
-        - ./custom-apps.sh:/hooks/install/custom-apps.sh
         - ./data/app/config:/var/www/html/config
         - ./data/app/custom_apps:/var/www/html/custom_apps
         - ./data/app/data:/var/www/html/data
         - ./data/app/themes:/var/www/html/themes
         - /etc/localtime:/etc/localtime:ro
       env_file: .env
-      command:
-        - "chmod 744 /hooks/install/custom-apps.sh"
-        - "/hooks/install/custom-apps.sh"
       ports:
         - "8080:80"
-
-
-networks:
-  nextcloud_network:
