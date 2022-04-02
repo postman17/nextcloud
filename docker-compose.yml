@@ -16,6 +16,7 @@ services:
   app:
     image: nextcloud-local-image
     build:
+      context: .
       dockerfile: Dockerfile
     container_name: nextcloud-app
     restart: unless-stopped
