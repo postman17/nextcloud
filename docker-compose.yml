@@ -27,7 +27,9 @@ services:
         - ./data/app/themes:/var/www/html/themes
         - /etc/localtime:/etc/localtime:ro
       env_file: .env
-      command: ["/hooks/install/custom-apps.sh"]
+      command:
+        - "chmod 744 /hooks/install/custom-apps.sh"
+        - "/hooks/install/custom-apps.sh"
       ports:
         - "8080:80"
 
