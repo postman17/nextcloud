@@ -15,6 +15,7 @@ services:
 
   app:
     image: nextcloud-local-image
+    env_file: .env
     build:
       context: .
       dockerfile: Dockerfile
@@ -23,11 +24,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./data/app/config:/var/www/html/config
-      - ./data/app/custom_apps:/var/www/html/custom_apps
-      - ./data/app/data:/var/www/html/data
-      - ./data/app/themes:/var/www/html/themes
+      - ./data/nextcloud:/var/www/html
       - /etc/localtime:/etc/localtime:ro
-    env_file: .env
     ports:
       - "8080:80"

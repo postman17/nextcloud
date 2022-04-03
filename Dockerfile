@@ -1,10 +1,11 @@
 FROM nextcloud:latest
 
+
 WORKDIR /var/www/html
 
-COPY ./scripts/custom-apps.sh /hooks/install/custom-apps.sh
+ARG NEXTCLOUD_CUSTOM_APPS
 
-RUN chmod u+x /hooks/install/custom-apps.sh
+COPY ./install-apps.sh /
 
-ENTRYPOINT ["/hooks/install/custom-apps.sh"]
-CMD ["apache2-foreground"]
+RUN chmod u+x /install-apps.sh
+RUN chsh -s /bin/bash www-data
