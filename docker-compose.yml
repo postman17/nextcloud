@@ -26,5 +26,6 @@ services:
     volumes:
       - ./data/nextcloud:/var/www/html
       - /etc/localtime:/etc/localtime:ro
+    entrypoint: sh -c '/wait-for-it.sh db:5433 --timeout=10 -- /entrypoint.sh apache2-foreground'
     ports:
       - "8080:80"
