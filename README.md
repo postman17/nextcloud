@@ -5,6 +5,8 @@
 - ```Copy .env.example to .env and fill settings```
 - ```docker-compose up```
 
+### Clear volumes data
+- ```make clear```
 
 ### Install common apps after startup
 - ```Fill NEXTCLOUD_CUSTOM_APPS variable target apps```
